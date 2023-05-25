@@ -1,0 +1,145 @@
+ /* arrange the calculator in center*/
+.main{
+  width: fit-content;
+  height: auto;
+  border-radius: 10px;
+  margin: auto;
+  margin-top: 100px;
+}
+/* styling for display */
+input{
+  width: 400px;
+  height: 70px;
+  text-align: right;
+  font-family: monospace;
+  font-size: 3rem;
+  border-radius: 5px; 
+}
+/* styling for the buttons*/
+button{
+  text-align: center;
+  width: 100px;
+  height: 80px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  background-color: dimgray;
+  color: white;
+}
+/* used to arrange the grid in a correct formate*/
+.buttons{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  width: fit-content;
+  height: fit-content;
+}
+/* assigning colors for operations buttons*/
+#btn15{
+  background-color: red;
+  color: white;
+}
+#btn16{
+  background-color: red;
+  color: white;
+}
+#btn19{
+  background-color: red;
+  color: white;
+}
+#btn20{
+  background-color: red;
+  color: white;
+}
+#btn14{
+  background-color: red;
+  color: white;
+}
+#btn13{
+  background-color: red;
+  color: white;
+}
+#btn12{
+  background-color: red;
+  color: white;
+}
+#btn18{
+  background-color: red;
+  color: white;
+}
+[14:24, 5/22/2023] Likhith Clg: data.js
+
+// using various attributes to store operations,inputs etc..//
+const buttons = document.querySelectorAll('button');
+const clear = document.getElementById('btn16');
+const answer = document.getElementById('btn15');
+const backSpace = document.getElementById('btn18');
+const square = document.getElementById('btn17');
+const input = document.getElementById('enter');
+let str = "";
+let InputContent = "";
+buttons.forEach(element => {
+    element.addEventListener('click', () => {
+        if(element===square) //to find square of a number\\
+        {
+            str=input.value*input.value;
+            str=String(str);
+        }
+        else if(element!==clear && element!==answer && element!==backSpace) // used for giving an input\\
+        {
+            str+=element.value;
+        }
+        else if(element===clear) // used to clear the display\\
+        {
+            str="";
+        }
+        else if(element===answer && str!=="") // used to perform calculations//
+        {
+            str=eval(str).toString();
+        }
+        else
+        {
+            str=str.slice(0,-1);
+        }
+        input.value = str;
+    })
+});
+[14:24, 5/22/2023] Likhith Clg: index.html
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatiable" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Style.css"> <!--connection to the css-->
+    <title> A simple Calculator</title> <!--title for the project-->
+</head>
+
+<body>
+    <div class="main"> <!--creating grid-->
+        <input type="text" id="enter">
+        <div class="buttons">
+            <!--creation of buttons-->
+            <button id="btn16">AC</button>
+            <button id="btn18">DEL</button>
+            <button id="btn19" value="%">&#37;</button>
+            <button id="btn20" value="/">/</button>
+            <button id="btn7" value="7">7</button>
+            <button id="btn8" value="8">8</button>
+            <button id="btn9" value="9">9</button>
+            <button id="btn14" value="*">&#215;</button>
+            <button id="btn4" value="4">4</button>
+            <button id="btn5" value="5">5</button>
+            <button id="btn6" value="6">6</button>
+            <button id="btn13" value="-">&#8722;</button>
+            <button id="btn1" value="1">1</button>
+            <button id="btn2" value="2">2</button>
+            <button id="btn3" value="3">3</button>
+            <button id="btn12" value="+">&#43;</button>
+            <button id="btn17" value="">Sqr</button>
+            <button id="btn10" value="0">0</button>
+            <button id="btn11" value=".">.</button>
+            <button id="btn15" value="=">=</button>
+        </div>
+        <script src="Data.js"></script> <!--connection to javascript-->
+</body>
+</html>
